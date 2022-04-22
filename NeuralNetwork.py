@@ -1,7 +1,5 @@
-from tkinter import Y
 import numpy as np
 import numpy as np
-from numpy.linalg import norm
 from tabulate import tabulate
 from numpy import transpose as trans
 
@@ -20,12 +18,12 @@ class NeuralNetwork:
         self.l  = l
         #Activations
         self.a2 = np.zeros(self.y.shape)
-        self.a1 = np.zeros((self.h1, 3))
+        self.a1 = np.zeros((self.h1, self.x.shape[1]))
         #Biases
         self.b1 = np.random.rand(self.h1, 1)
-        self.b2 = np.random.rand(self.y.shape[0], 1)
+        self.b2 = np.random.rand(self.y.shape[0],1)
         #Weights
-        self.w1 = np.random.rand(self.h1, 8)
+        self.w1 = np.random.rand(self.h1, self.y.shape[0])
         self.w2 = np.random.rand(self.y.shape[0], self.h1)
 
         # print(self.a1.shape)#A1 (h1,3)
@@ -50,20 +48,23 @@ class NeuralNetwork:
         #self.b2 += db2
         # self.b1 += db1
 
-    def Run(self, output, epochs):
+    def Run(self, nn, output, epochs):
 
         for i in range(epochs):
             nn.FeedForward()
             nn.BackProp()
 
             if (i == epochs-1):
-                table = [[y[0],a2[0]] for y, a2 in zip(output, nn.a2)]
+                # table = [[y[0],a2[0]] for y, a2 in zip(output, nn.a2)]
 
-                titles = ["Correct Values", "AI Predicted Values"]
-                print("\n")
-                print("            After {} epochs".format(epochs))
-                print(tabulate(table, titles, tablefmt="github"))
-                print("\n")
+                # titles = ["Correct Values", "AI Predicted Values"]
+                # print("\n")
+                # print("            After {} epochs".format(epochs))
+                # print(tabulate(table, titles, tablefmt="github"))
+                # print("\n")
+                print(output)
+
+
 
 andIn = np.array([  [0,0,0],
                     [0,0,1],
@@ -83,8 +84,4 @@ andOut = np.array([ [0],
                     [.2]])
 
 nn = NeuralNetwork(andIn, andOut, 20, .5)
-nn.Run(andOut,20000)
-
-
-
-
+nn.Run(nn, andOut,20000)
