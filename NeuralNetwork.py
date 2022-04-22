@@ -26,6 +26,7 @@ class NeuralNetwork:
         self.w1 = np.random.rand(self.h1, self.y.shape[0])
         self.w2 = np.random.rand(self.y.shape[0], self.h1)
 
+        ## For AND Gate ##
         # print(self.a1.shape)#A1 (h1,3)
         # print(self.a2.shape)#A2 (8,1)
         # print(self.y.shape) #Y  (8,1)
@@ -55,14 +56,14 @@ class NeuralNetwork:
             nn.BackProp()
 
             if (i == epochs-1):
-                # table = [[y[0],a2[0]] for y, a2 in zip(output, nn.a2)]
+                table = [[y[0],a2[0]] for y, a2 in zip(output, nn.a2)]
 
-                # titles = ["Correct Values", "AI Predicted Values"]
-                # print("\n")
-                # print("            After {} epochs".format(epochs))
-                # print(tabulate(table, titles, tablefmt="github"))
-                # print("\n")
-                print(output)
+                titles = ["Correct Values", "AI Predicted Values"]
+                print("\n")
+                print("            After {} epochs".format(epochs))
+                print(tabulate(table, titles, tablefmt="github"))
+                print("\n")
+                # print(output)
 
 
 
