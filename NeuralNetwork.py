@@ -84,5 +84,5 @@ andOut = np.array([ [0],
                     [0],
                     [.2]])
 
-nn = NeuralNetwork(andIn, andOut, 20, .5)
-nn.Run(nn, andOut,20000)
+# nn = NeuralNetwork(andIn, andOut, 20, .5)
+# nn.Run(nn, andOut,20000)
